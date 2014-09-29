@@ -20,16 +20,17 @@ class DevelopmentConfig(Config):
 	MAIL_USE_TLS = True
 	MAIL_USERNAME = 'test@gmail.com'
 	MAIL_PASSWORD = 'testme'
-	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
-		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+	SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
+#	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
+#		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
 class TestingConfig(Config):
 	TESTING = True
-	SQLALCHEMY_DATABASE_URL = os.environ.get('TEST_DATABASE_URL') or \
+	SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
 		'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
 
 class ProductionConfig(Config):
-	SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL') or \
+	SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
 		'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 
