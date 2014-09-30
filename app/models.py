@@ -30,7 +30,8 @@ class Subscriber(Base):
 	def __repr__(self):
 		return '<User: %r>' % self.email
 
-	def __init__(self):
+	def __init__(self, email):
+		self.email = email
 		input_secret = salt + repr(time.time())
 		self.secret_hash = self.generate_secret(input_secret)
 
