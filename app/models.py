@@ -3,19 +3,30 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from app import db
 import time
 import hashlib
+from flask.ext.login import UserMixin
+from . import login_manager
 
 salt = "uhfejs@"
 
-class Subscriber(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+	return Admin.query.get(int(user_id))
+
+class Base(db.Model):
+	__abstract__ = True
+	
+	id = db.Column(db.Integer, primary_key=True)
+	isactive = db.Column(db.Boolean(), default=0, nullable=False)
+	isdeleted = db.Column(db.Boolean(), default=0, nullable=False)
+	added_on = db.Column(db.DateTime(), default=db.func.current_timestamp(), nullable=False)
+	modified_on = db.Column(db.DateTime(), default=db.func.current_timestamp(), onupdate=db.func.current_timestamp(), nullable=False)
+
+class Subscriber(Base):
 	__tablename__ = 'subscribers'
 
-	id = db.Column(db.Integer, primary_key=True)
-	email = db.Column(db.String(64), unique=True, index=True)
-	secret_hash = db.Column(db.String(128))
-	isactive = db.Column(db.Boolean(), default=False)
-	isdeleted = db.Column(db.Boolean(), default=False)
-	added_on = db.Column(db.DateTime())
-
+	email = db.Column(db.String(64), unique=True, index=True, nullable=False)
+	secret_hash = db.Column(db.String(128), nullable=False)
+		
 	def __repr__(self):
 		return '<User: %r>' % self.email
 
@@ -29,22 +40,26 @@ class Subscriber(db.Model):
 	def verify_secret(self, input_secret):
 		return check_password_hash(self.secret_hash, input_secret)
 
-class Contest(db.Model):
+class Contest(Base):
 	__tablename__ = 'contests'
 
-	id = db.Column(db.Integer, primary_key=True)
-	title = db.Column(db.String(30))
-	description = db.Column(db.String(160))
-	event_time = db.Column(db.DateTime())
-	duration = db.Column(db.Interval())
-	arena = db.Column(db.String(40))
-	url = db.Column(db.String(200))
-	added_on = db.Column(db.DateTime())
-	isactive = db.Column(db.Boolean(), default=False)
-	isdeleted = db.Column(db.Boolean(), default=False)
-
+	title = db.Column(db.String(30), nullable=False)
+	description = db.Column(db.String(160), nullable=False)
+	event_time = db.Column(db.DateTime(), nullable=False)
+	duration = db.Column(db.Interval(), nullable=False)
+	arena = db.Column(db.String(40), nullable=False)
+	url = db.Column(db.String(200), nullable=False)
+	
 	def __repr__(self):
 		return '<Contest: %r>' % self.title
 
-	def __init__(self):
-		self.added_on = int(time.time())
+
+class Admin(Base, UserMixin):
+	__tablename__ = 'admin'
+
+	username = db.Column(db.String(30), nullable=False)
+	password = db.Column(db.String(30), nullable=False)
+
+	def __repr__(self):
+		return '<Admin: %r>' % self.username
+
