@@ -27,4 +27,3 @@ def confirm(token):
 	else:
 		flash('Invalid or expired request')
 	return redirect(url_for('main.index') )
-

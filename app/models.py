@@ -46,13 +46,16 @@ class Contest(Base):
 
 	title = db.Column(db.String(30), nullable=False)
 	description = db.Column(db.String(160), nullable=False)
-	event_time = db.Column(db.DateTime(), nullable=False)
-	duration = db.Column(db.Interval(), nullable=False)
-	arena = db.Column(db.String(40), nullable=False)
+	start_time = db.Column(db.DateTime(), nullable=False)
+	end_time = db.Column(db.DateTime(), nullable=False)
 	url = db.Column(db.String(200), nullable=False)
+	arena_id = db.Column(db.Integer, db.ForeignKey('arena.id'), nullable=False)
 	
 	def __repr__(self):
 		return '<Contest: %r>' % self.title
+
+	def __init__(self, title):
+		self.title = title
 
 
 class Admin(Base, UserMixin):
@@ -64,3 +67,13 @@ class Admin(Base, UserMixin):
 	def __repr__(self):
 		return '<Admin: %r>' % self.username
 
+class Arena(Base):
+	__tablename__ = 'arena'
+
+	title = db.Column(db.String(20), nullable=False)
+
+	def __repr__(self):
+		return '<Arena: %r>' % self.title
+
+	def __init__(self, title):
+		self.title = title;
