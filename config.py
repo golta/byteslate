@@ -8,6 +8,8 @@ class Config:
 	FLASKY_MAIL_SUBJECT_PREFIX = 'WHO KNOWS'
 	FLASKY_MAIL_SENDER = 'ME <ME@EXAMPLE.COM>'
 	FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN') or 'admin'
+	CELERY_BROKER_URL = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
+	CELERY_BROKER_BACKEND = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
 
 	@staticmethod
 	def init_app(app):
@@ -20,9 +22,11 @@ class DevelopmentConfig(Config):
 	MAIL_USE_TLS = True
 	MAIL_USERNAME = 'test@gmail.com'
 	MAIL_PASSWORD = 'testme'
-	SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
-#	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
-#		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+	CELERY_BROKER_URL = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
+	CELERY_BROKER_BACKEND = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
+	#SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
+	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
+		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
 class TestingConfig(Config):
 	TESTING = True

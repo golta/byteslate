@@ -5,6 +5,7 @@ from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy
 from config import config
 from flask.ext.login import LoginManager
+from celery import Celery
 
 bootstrap = Bootstrap()
 mail = Mail()
@@ -20,6 +21,7 @@ def create_app(config_name):
 	app.config.from_object(config[config_name])
 	
 	config[config_name].init_app(app)
+
 	bootstrap.init_app(app)
 	mail.init_app(app)
 	moment.init_app(app)
@@ -33,3 +35,19 @@ def create_app(config_name):
 	app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
 	return app
+
+def create_celery_app(app=None):
+	app = app or create_app('default')
+	celery = Celery(__name__, broker=app.config['CELERY_BROKER_URL'])
+	celery.conf.update(app.config)
+	Taskbase = celery.Task
+
+	class ContextTask(Taskbase):
+		abstract = True
+
+		def __call__(self, *args, **kwargs):
+			with app.app_context():
+				return Taskbase.__call__(self, *args, **kwargs)
+	
+	celery.Task = ContextTask
+	return celery
