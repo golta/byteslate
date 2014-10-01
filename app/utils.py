@@ -1,10 +1,12 @@
+from datetime import datetime
+
+
 def timeago(time=False):
     """
     Get a datetime object or a int() Epoch timestamp and return a
     pretty string like 'an hour ago', 'Yesterday', '3 months ago',
     'just now', etc
     """
-    from datetime import datetime
     now = datetime.now()
     if type(time) is int:
         diff = now - datetime.fromtimestamp(time)
@@ -12,6 +14,7 @@ def timeago(time=False):
         diff = now - time
     elif not time:
         diff = now - now
+    
     second_diff = diff.seconds
     day_diff = diff.days
 
@@ -31,6 +34,7 @@ def timeago(time=False):
             return "an hour ago"
         if second_diff < 86400:
             return str(second_diff / 3600) + " hours ago"
+    
     if day_diff == 1:
         return "Yesterday"
     if day_diff < 7:
