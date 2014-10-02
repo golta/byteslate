@@ -11,6 +11,7 @@ def login():
 		admin = Admin.query.filter_by(username=form.username.data, password=form.password.data).first()
 		if admin is not None:
 			login_user(admin)
+			session['isadmin'] = True
 			return redirect(url_for('main.index') )
 		flash('Invalid username or password')
 	return render_template('auth/login.html', form=form)

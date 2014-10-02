@@ -24,7 +24,7 @@ class Base(db.Model):
 class Subscriber(Base):
 	__tablename__ = 'subscribers'
 
-	email = db.Column(db.String(64), unique=True, index=True, nullable=False)
+	email = db.Column(db.String(64), index=True, nullable=False)
 	secret_hash = db.Column(db.String(128), nullable=False)
 		
 	def __repr__(self):
