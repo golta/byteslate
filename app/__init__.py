@@ -35,4 +35,7 @@ def create_app(config_name):
 	from .contest import contest as contest_blueprint
 	app.register_blueprint(contest_blueprint, url_prefix='/contest')
 
+	from .api import api as api_blueprint
+	app.register_blueprint(api_blueprint, url_prefix='/api')
+	
 	return app

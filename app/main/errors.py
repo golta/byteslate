@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from . import main
 
 @main.app_errorhandler(404)
@@ -24,3 +24,12 @@ def forbidden(message):
 	response = jsonify({'error': 'forbidden', 'message': message})
 	response.status_code = 403
 	return response
+
+@main.app_errorhandler(405)
+def internal_server_error(e):
+	if request.accept_mimetypes.accept_json and \
+			not request.accept_mimetypes.accept_html:
+		response = jsonify({'error': 'not allowed'})
+		response.status_code = 500
+		return response
+	return redirect(url_for('main.index')), 405

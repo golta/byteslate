@@ -50,12 +50,23 @@ class Contest(Base):
 	end_time = db.Column(db.DateTime(), nullable=False)
 	url = db.Column(db.String(200), nullable=False)
 	arena_id = db.Column(db.Integer, db.ForeignKey('arena.id'), nullable=False)
-	
+	#arena = db.relationship('Arena', backref=db.backref('contests', lazy='dynamic'))
+
 	def __repr__(self):
 		return '<Contest: %r>' % self.title
 
 	def __init__(self, title):
 		self.title = title
+
+	def to_json(self):
+		json_data = {
+			'title': self.title,
+			'description' : self.description,
+			'start_time': self.start_time,
+			'end_time': self.end_time,
+			'url' : self.url
+		}
+		return json_data
 
 
 class Admin(Base, UserMixin):
@@ -76,4 +87,4 @@ class Arena(Base):
 		return '<Arena: %r>' % self.title
 
 	def __init__(self, title):
-		self.title = title;
+		self.title = title
