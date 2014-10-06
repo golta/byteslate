@@ -28,12 +28,18 @@ def create_app(config_name):
 	db.init_app(app)
 	login_manager.init_app(app)
 
+
 	from main import main as main_blueprint
 	app.register_blueprint(main_blueprint)
 
 	from auth import auth as auth_blueprint
 	app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
+	with app.app_context():
+		# Extensions like Flask-SQLAlchemy now know what the "current" app
+		# is while within this block. Therefore, you can now run........
+		db.create_all()
+		
 	return app
 
 def create_celery_app(app=None):

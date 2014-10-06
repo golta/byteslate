@@ -22,25 +22,25 @@ def send_event_notification(*recepients):
 	msg = Message(
 		'Your Next Event is On',
 		sender='admin@bytecode.com',
-		recipients=[user]
+		#recipients=[user]
 	)
 	
 	msg.body = render_template(
 		'mail/notification.mail'
-		user=user,
-		token=token
+		#user=user,
+		#token=token
 	)
 	mail.send(msg)
 	logger.info("Task finished: result")
 
-@periodic_task(run_every=(crontab(hour="*")))
+@periodic_task(run_every=(crontab(hour="*", minute="*")))
 def send_mail():
 
     logger.info("Start task")
-	# get list of all contest which have time in next 24 hours
-	contest_list = Contest.query.filter_by(event_time > datetime.now()).all()
+    # get list of all contest which have time in next 24 hours
+    contest_list = Contest.query.filter_by(event_time > datetime.now()).all()
 
-	for contest in contest_list:
+    for contest in contest_list:
 		diff_hour = (datetime.now() - contest.event_time).hours 
 		
 		# send mail contest going to happen in next 24 hours
