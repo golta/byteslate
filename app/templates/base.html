@@ -2,10 +2,27 @@
 <head>
 	{% block head %}
 		<title>{% block title %}{% endblock %} - ByteBoard</title>
+		{% with messages = get_flashed_messages() %}
+  			{% if messages %}
+    			<ul class=flashes>
+    				{% for message in messages %}
+      					<li>{{ message }}</li>
+    				{% endfor %}
+    			</ul>
+  			{% endif %}
+		{% endwith %}
 	{% endblock %}
 </head>
 
 <body>
+	<ul class="nav navbar-nav navbar-right">
+		{% if current_user.is_authenticated() %}
+			<li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
+		{% else %}
+			<li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
+		{% endif %}
+	</ul>
+
 	{% block body %}
 	{% endblock %}
 </body>

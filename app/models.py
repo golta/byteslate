@@ -24,13 +24,14 @@ class Base(db.Model):
 class Subscriber(Base):
 	__tablename__ = 'subscribers'
 
-	email = db.Column(db.String(64), unique=True, index=True, nullable=False)
+	email = db.Column(db.String(64), index=True, nullable=False)
 	secret_hash = db.Column(db.String(128), nullable=False)
 		
 	def __repr__(self):
 		return '<User: %r>' % self.email
 
-	def __init__(self):
+	def __init__(self, email):
+		self.email = email
 		input_secret = salt + repr(time.time())
 		self.secret_hash = self.generate_secret(input_secret)
 
@@ -45,13 +46,27 @@ class Contest(Base):
 
 	title = db.Column(db.String(30), nullable=False)
 	description = db.Column(db.String(160), nullable=False)
-	event_time = db.Column(db.DateTime(), nullable=False)
-	duration = db.Column(db.Interval(), nullable=False)
-	arena = db.Column(db.String(40), nullable=False)
+	start_time = db.Column(db.DateTime(), nullable=False)
+	end_time = db.Column(db.DateTime(), nullable=False)
 	url = db.Column(db.String(200), nullable=False)
-	
+	arena_id = db.Column(db.Integer, db.ForeignKey('arena.id'), nullable=False)
+	#arena = db.relationship('Arena', backref=db.backref('contests', lazy='dynamic'))
+
 	def __repr__(self):
 		return '<Contest: %r>' % self.title
+
+	def __init__(self, title):
+		self.title = title
+
+	def to_json(self):
+		json_data = {
+			'title': self.title,
+			'description' : self.description,
+			'start_time': self.start_time,
+			'end_time': self.end_time,
+			'url' : self.url
+		}
+		return json_data
 
 
 class Admin(Base, UserMixin):
@@ -63,3 +78,13 @@ class Admin(Base, UserMixin):
 	def __repr__(self):
 		return '<Admin: %r>' % self.username
 
+class Arena(Base):
+	__tablename__ = 'arena'
+
+	title = db.Column(db.String(20), nullable=False)
+
+	def __repr__(self):
+		return '<Arena: %r>' % self.title
+
+	def __init__(self, title):
+		self.title = title
