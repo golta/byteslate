@@ -19,7 +19,7 @@ login_manager.login_view = 'auth.login'
 def create_app(config_name):
 	app = Flask(__name__)
 	app.config.from_object(config[config_name])
-	
+
 	config[config_name].init_app(app)
 
 	bootstrap.init_app(app)
@@ -35,20 +35,12 @@ def create_app(config_name):
 	from .auth import auth as auth_blueprint
 	app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
-<<<<<<< HEAD
-	with app.app_context():
-		# Extensions like Flask-SQLAlchemy now know what the "current" app
-		# is while within this block. Therefore, you can now run........
-		db.create_all()
-		
-=======
 	from .contest import contest as contest_blueprint
 	app.register_blueprint(contest_blueprint, url_prefix='/contest')
 
 	from .api import api as api_blueprint
 	app.register_blueprint(api_blueprint, url_prefix='/api')
-	
->>>>>>> b733c6dc7bdd701c07fd9cf7f8c57814b1263f58
+
 	return app
 
 def create_celery_app(app=None):
@@ -63,6 +55,6 @@ def create_celery_app(app=None):
 		def __call__(self, *args, **kwargs):
 			with app.app_context():
 				return Taskbase.__call__(self, *args, **kwargs)
-	
+
 	celery.Task = ContextTask
 	return celery
