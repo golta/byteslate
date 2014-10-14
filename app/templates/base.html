@@ -1,5 +1,6 @@
 <html>
 <head>
+
 	{% block head %}
 		<title>{% block title %}{% endblock %} - ByteBoard</title>
 		{% with messages = get_flashed_messages() %}
@@ -12,6 +13,7 @@
   			{% endif %}
 		{% endwith %}
 	{% endblock %}
+<link rel="stylesheet" type="text/css" href="/static/hello.css">
 </head>
 
 <body>

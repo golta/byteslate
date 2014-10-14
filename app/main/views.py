@@ -3,12 +3,7 @@ from flask import render_template, session, redirect, url_for, request, flash
 from . import main
 from .forms import SubscriptionForm
 from ..models import *
-<<<<<<< HEAD
 from app.email import *
-
-@main.route('/', methods=['GET', 'POST'])
-def index():
-	return render_template('index.html')
 
 
 @main.route('/email')
