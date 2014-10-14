@@ -16,7 +16,7 @@ def email():
 	print "In main context"
 	send_event_notification.delay('rahul.rrixe@gmail.com')
 	return "hello txt"
-=======
+
 #from ..email import send_mail
 
 @main.route('/', methods=['GET', 'POST'])
@@ -41,4 +41,4 @@ def confirm(token):
 	else:
 		flash('Invalid or expired request')
 	return redirect(url_for('main.index') )
->>>>>>> b733c6dc7bdd701c07fd9cf7f8c57814b1263f58
+
