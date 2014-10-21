@@ -27,3 +27,17 @@ def confirm(token):
 	else:
 		flash('Invalid or expired request')
 	return redirect(url_for('main.index') )
+
+@main.route('/about', methods=['GET', 'POST'])
+def about():
+	return render_template('about.html')
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+	return render_template('contact.html')
+
+@main.route('/contest/<id>')
+def contest_inner(id):
+	# @TODO
+	# fetch all the details of the contest using <id> and pass them as parameter below
+	return render_template('contest/inner.html', id=id)
