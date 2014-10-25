@@ -2,6 +2,7 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config:
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'thisI$immp0sibble334!22@'
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
@@ -26,7 +27,7 @@ class DevelopmentConfig(Config):
 	CELERY_BROKER_BACKEND = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
 	#SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
 	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
-		'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+		'sqlite:///' + os.path.join(basedir, 'appdev.db')
 
 class TestingConfig(Config):
 	TESTING = True
