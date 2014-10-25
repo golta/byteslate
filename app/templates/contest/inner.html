@@ -78,8 +78,9 @@
                 <p>Prizes: Top 3 winners to get HackerEarth T-shirts!</p>
             </div>
             <div class="ct-in-disqus">
-                <img src="/static/images/disqus.png" />
-                <img src="/static/images/disqus1.png" />
+                {% block disqus %}
+                    {% include 'contest/comment.html' %}
+                {% endblock %}
             </div>
         </div>
     </div>
