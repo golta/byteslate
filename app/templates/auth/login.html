@@ -4,11 +4,19 @@
 
 {% block title %}Admin Login{% endblock %}
 
+{% block site_header %}
+    {% include 'includes/site_header.html' %}
+{% endblock %}
+
 {% block body %}
-	<div class="page-header">
-		<h1>Login</h1>
-	</div>
-	<div class="col-md-4">
+
+	<h1>Login</h1>
+
+	<div class="container">
 		{{ wtf.quick_form(form) }}
 	</div>
+{% endblock %}
+
+{% block site_footer %}
+    {% include 'includes/site_footer.html' %}
 {% endblock %}

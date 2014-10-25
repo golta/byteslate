@@ -15,7 +15,7 @@ def load_user(user_id):
 
 class Base(db.Model):
 	__abstract__ = True
-	
+
 	id = db.Column(db.Integer, primary_key=True)
 	isactive = db.Column(db.Boolean(), default=0, nullable=False)
 	isdeleted = db.Column(db.Boolean(), default=0, nullable=False)
@@ -27,7 +27,7 @@ class Subscriber(Base):
 
 	email = db.Column(db.String(64), index=True, nullable=False)
 	secret_hash = db.Column(db.String(128), nullable=False)
-		
+
 	def __repr__(self):
 		return '<User: %r>' % self.email
 

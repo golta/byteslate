@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %} Contests {% endblock %}
+
+{% block site_header %}
+    {% set active_page = "" %}
+    {% include 'includes/site_header.html' %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container ct-in-holder">
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+            <div class="ct-in-timer">
+                <center>
+                    <p>Starts in</p>
+                    <p>
+                     <script>
+                        var myCountdown4 = new Countdown({
+                                        year: 2014,
+                                        month:10,
+                                        day:29,
+                                        hour:4,
+                                        ampm:"pm",
+                                        width:220,
+                                        height:60   ,
+                                        rangeHi: "days",
+                                        hideLine: 1,
+                                        numbers     :   {
+
+                                                            color   : "#555555",
+                                                            bkgd    : "#E7EBF3",
+                                                            rounded : 0.25,
+                                                        },
+                                        labels : {
+
+                                                         color  : "#777777",
+                                                         weight : "normal" // < - no comma on last item!
+                                                     }
+                                        });
+                    </script>
+                    </p>
+                </center>
+            </div>
+            <div class="ct-in-title">
+                <p>{{id|e}} Contest Title goes here, it can be longer &nbsp; <a href=""><i class="fa fa-external-link"></i></a></p>
+            </div>
+            <div class="ct-in-pub">
+                <p>Posted on: 24<sup>th</sup> Oct, 2014</p>
+            </div>
+            <div class="ct-in-date">
+                <center>
+                <table class="">
+                    <thead>
+                        <tr class="">
+                            <td class=""> Opens at: </td>
+                            <td class=""> Closes on: </td>
+                            <td class=""> Duration </td>
+                        </tr>
+                    </thead>
+                    <tbody><tr>
+                        <td class=""> 25 Oct 2014, 09:30 PM IST </td>
+                        <td class=""> 26 Oct 2014, 12:00 AM IST </td>
+                        <td class=""> 2h  30m </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </center>
+            </div>
+            <div class="ct-in-desc">
+                <p><b>Challenge Details</b></p>
+                <p>This HackerEarth is running a short 2.5 hour contest on 25th October. There will be 4 algorithmic problems of varying difficulty level. This contest is open for all. </p>
+                <p>Prizes: Top 3 winners to get HackerEarth T-shirts!</p>
+                <p>This HackerEarth is running a short 2.5 hour contest on 25th October. There will be 4 algorithmic problems of varying difficulty level. This contest is open for all. </p>
+                <p>Prizes: Top 3 winners to get HackerEarth T-shirts!</p>
+            </div>
+            <div class="ct-in-disqus">
+                <img src="/static/images/disqus.png" />
+                <img src="/static/images/disqus1.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block site_footer %}
+    {% include 'includes/site_footer.html' %}
+{% endblock %}

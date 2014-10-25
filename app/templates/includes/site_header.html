@@ -1,0 +1,42 @@
+{% set navigation_bar = [
+    ('/', 'home', 'Home'),
+    ('/about', 'about', 'About'),
+    ('/contact', 'contact', 'contact')
+] %}
+
+{% set active_page = active_page|default('home') %}
+
+<nav class="container-fluid header">
+    <div class="row">
+        <div class="col-lg-1" class="visible-lg">
+
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-5">
+            <div class="title">
+                <h3>ByteBoard</h3>
+            </div>
+
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7">
+            <div class="h_right">
+                <ul class="menu">
+                    {% for href, id, caption in navigation_bar %}
+                    <li{% if id == active_page %} class="active" {% endif %}><a href="{{ href|e }}">{{ caption|e }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!-- start smart_nav * -->
+                <nav class="nav" >
+                    <ul class="nav-list">
+                    {% for href, id, caption in navigation_bar %}
+                    <li class="nav-item"><a href="{{ href|e }}">{{ caption|e }}</a></li>
+                    {% endfor %}
+                        <div class="clear"></div>
+                    </ul>
+                </nav>
+                <script type="text/javascript" src="/static/js/responsive.menu.js"></script>
+                <!-- end smart_nav * -->
+            </div>
+        </div>
+    </div>
+</nav>
