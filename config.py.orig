@@ -25,9 +25,15 @@ class DevelopmentConfig(Config):
 	MAIL_PASSWORD = 'testme'
 	CELERY_BROKER_URL = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
 	CELERY_BROKER_BACKEND = os.environ.get('REDISCLOUD_URL') or 'redis://127.0.0.1:6379'
+<<<<<<< HEAD
 	#SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
 	SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
 		'sqlite:///' + os.path.join(basedir, 'appdev.db')
+=======
+	SQLALCHEMY_DATABASE_URI = 'mysql://root:qwerty@localhost/byteboard'
+	#SQLALCHEMY_DATABASE_URL = os.environ.get('DEV_DATABASE_URL') or \
+	#	'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+>>>>>>> 816693e718d6e5842222c1b43ab1320fd59c952a
 
 class TestingConfig(Config):
 	TESTING = True

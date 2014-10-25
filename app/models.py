@@ -5,6 +5,7 @@ import time
 import hashlib
 from flask.ext.login import UserMixin
 from . import login_manager
+import bson
 
 salt = "uhfejs@"
 
@@ -50,7 +51,7 @@ class Contest(Base):
 	end_time = db.Column(db.DateTime(), nullable=False)
 	url = db.Column(db.String(200), nullable=False)
 	arena_id = db.Column(db.Integer, db.ForeignKey('arena.id'), nullable=False)
-	#arena = db.relationship('Arena', backref=db.backref('contests', lazy='dynamic'))
+	arena = db.relationship('Arena', backref=db.backref('contests', lazy='dynamic'))
 
 	def __repr__(self):
 		return '<Contest: %r>' % self.title
@@ -62,11 +63,12 @@ class Contest(Base):
 		json_data = {
 			'title': self.title,
 			'description' : self.description,
-			'start_time': self.start_time,
-			'end_time': self.end_time,
-			'url' : self.url
+			'start_time': str(self.start_time),
+			'end_time': str(self.end_time),
+			'url' : self.url,
+			'arena': self.arena.title
 		}
-		return json_data
+		return bson.dumps(json_data)
 
 
 class Admin(Base, UserMixin):
