@@ -4,6 +4,7 @@ from ..models import Contest, Arena
 from .forms import ContestAddForm
 from flask.ext.login import login_required
 from app import db
+from datetime import datetime
 
 @contest.route('/add', methods=['GET', 'POST'])
 @login_required
@@ -18,7 +19,7 @@ def add_contest():
 		contest.arena_id = form.arena.data
 		contest.start_time = form.start_time.data
 		contest.end_time = form.end_time.data
-		
+		contest.added_on = datetime.now()
 		db.session.add(contest)
 		db.session.commit()
 		flash('New contest Added')
@@ -46,7 +47,7 @@ def edit_contest(id):
 	form.description.data = contest.description
 	form.url.data =	contest.url
 	form.arena.data = contest.arena_id
-	form.start_time.data = contest.start_time 
+	form.start_time.data = contest.start_time
 	form.end_time.data = contest.end_time
 	return render_template('contest/edit.html', form=form, contest=contest)
 

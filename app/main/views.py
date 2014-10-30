@@ -24,7 +24,8 @@ def index():
 		#send_mail(subscriber.email, 'Confirm account', 'auth/email/confirm')  SEND MAIL HERE
 		flash('Subscription received. A confirmation mail has been sent')
 		return redirect(url_for('main.index'))
-	return render_template('index.html', form=form)
+	contests = Contest.query.all()
+	return render_template('index.html', form=form, contests=contests)
 
 @main.route('/confirm/<token>')
 def confirm(token):
@@ -45,8 +46,10 @@ def about():
 def contact():
 	return render_template('contact.html')
 
-@main.route('/contest/<id>')
-def contest_inner(id):
+@main.route('/contest/<title>/<id>')
+def contest_inner(title, id):
 	# @TODO
 	# fetch all the details of the contest using <id> and pass them as parameter below
-	return render_template('contest/inner.html', id=id)
+	contest = Contest.query.filter_by(id=id).first()
+	print contest
+	return render_template('contest/inner.html', contest=contest)

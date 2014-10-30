@@ -22,7 +22,7 @@
                         var myCountdown4 = new Countdown({
                                         year: 2014,
                                         month:10,
-                                        day:29,
+                                        day:30,
                                         hour:4,
                                         ampm:"pm",
                                         width:220,
@@ -46,7 +46,7 @@
                 </center>
             </div>
             <div class="ct-in-title">
-                <p>{{id|e}} Contest Title goes here, it can be longer &nbsp; <a href=""><i class="fa fa-external-link"></i></a></p>
+                <p><a href="{{contest.url|e}}" target="_new"> {{contest.title|e}} &nbsp; <i class="fa fa-external-link"></i></a></p>
             </div>
             <div class="ct-in-pub">
                 <p>Posted on: 24<sup>th</sup> Oct, 2014</p>
@@ -79,6 +79,7 @@
             </div>
             <div class="ct-in-disqus">
                 {% block disqus %}
+                    <p><b>{{contest.arena.title}} - {{contest.title}}</b></p>
                     {% include 'contest/comment.html' %}
                 {% endblock %}
             </div>

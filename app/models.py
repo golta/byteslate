@@ -66,7 +66,9 @@ class Contest(Base):
 			'start_time': str(self.start_time),
 			'end_time': str(self.end_time),
 			'url' : self.url,
-			'arena': self.arena.title
+			'arena': self.arena.title,
+			'added_on': self.added_on,
+			'id': self.id
 		}
 		return bson.dumps(json_data)
 

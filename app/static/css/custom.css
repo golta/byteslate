@@ -92,19 +92,19 @@ p {
     border-top: 5px solid #8D715A;
 }
 
-.bg-brown {
+.bg-codechef {
     background-color: #A99483;
 }
 
-.bg-red {
+.bg-topcoder {
     background-color: #C9494A;
 }
 
-.bg-blue {
+.bg-codeforces {
     background-color: #4D74C7;
 }
 
-.bg-green {
+.bg-hackerearth {
     background-color: #73b369;
 }
 
@@ -246,7 +246,7 @@ p {
 .ct-title a{
     color: #fff;
     text-align: left;
-    font-size:18px;
+    font-size:17px;
     font-weight: 400;
     text-transform: capitalize;
     text-shadow: 1px 2px 2px #888;
