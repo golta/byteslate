@@ -15,11 +15,13 @@ def add_contest():
 	if form.validate_on_submit():
 		contest = Contest(title=form.title.data)
 		contest.description = form.description.data
+		contest.content = form.content.data
 		contest.url = form.url.data
 		contest.arena_id = form.arena.data
 		contest.start_time = form.start_time.data
-		contest.end_time = form.end_time.data
-		contest.added_on = datetime.now()
+		contest.end_time = form.start_time.data
+		contest.isprized = form.prizes.data
+		contest.ishiring = form.hiring.data
 		db.session.add(contest)
 		db.session.commit()
 		flash('New contest Added')

@@ -16,8 +16,10 @@ def email():
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+	print "index"
 	form = SubscriptionForm()
 	if form.validate_on_submit():
+		print "got form"
 		subscriber = Subscriber(email=form.email.data)
 		db.session.add(subscriber)
 		db.session.commit()
