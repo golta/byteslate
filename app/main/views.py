@@ -21,7 +21,8 @@ def index():
 		subscriber = Subscriber(email=form.email.data)
 		db.session.add(subscriber)
 		db.session.commit()
-		#send_mail(subscriber.email, 'Confirm account', 'auth/email/confirm')  SEND MAIL HERE
+		# send confirmation mail
+		mail_send('Confirm account', subscriber.email, 'welcome', 'auth/email/confirm')
 		flash('Subscription received. A confirmation mail has been sent')
 		return redirect(url_for('main.index'))
 	contests = Contest.query.all()
