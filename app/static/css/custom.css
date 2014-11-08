@@ -818,6 +818,11 @@ p {
     border-bottom-right-radius: 5px;
     border:0;
     margin-left: -5px;
+    webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    outline: none;
 }
 
 .subscribe button:hover, button:focus{
@@ -901,3 +906,9 @@ p {
     margin-top: 20px;
 }
 
+.error_page  {
+    width:425px;
+    padding: 50px;
+    margin: auto;
+    text-align: center;
+}

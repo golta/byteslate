@@ -1,1 +1,24 @@
-<h1> 500 </h1>
+{% extends "base.html" %}
+
+{% block title %} 404-Error {% endblock %}
+
+{% block site_header %}
+
+{% endblock %}
+
+{% block body %}
+<body style='background:url() fixed ;  background-size:100% auto;'>
+  <div class="error_page">
+    <img alt="Kidmondo_face_sad" src="/static/images/face_sad.gif" />
+    <h1>500 that's an error</h1>
+    <p>There is some internal server error. Don't worry, we'll fix it soon.</p>
+    <p style='color:#9caa6d; font-size:20px; cursor:pointer;' onclick='history.go(-1);'>Go back</p>
+
+  </div>
+</body>
+</html>
+{% endblock %}
+
+{% block site_footer %}
+    {% include 'includes/site_footer.html' %}
+{% endblock %}
