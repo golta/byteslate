@@ -14,20 +14,11 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 subscribe" >
-          <input class="col-lg-8 col-md-8 " type="text" placeholder="-Tell us your email-" />
-          <button class="col-lg-4 col-md-4">Subscribe</button>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 subscribe" >
-            {% import "bootstrap/wtf.html" as wtf %}
+         <!--  <input class="col-lg-8 col-md-8 " type="text" placeholder="-Tell us your email-" />
+          <button class="col-lg-4 col-md-4">Subscribe</button> -->
+           {% import "bootstrap/wtf.html" as wtf %}
 
             {{ wtf.quick_form(form) }}
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 subscribe" >
-            <form method="post" role="form" action="{{url_for('main.index')}}">
-                {{ form.email.label }} {{ form.email() }}
-                {{ form.submit() }}
-            </form>
-        </div>
-
     </div>
 </div>

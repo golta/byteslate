@@ -786,7 +786,6 @@ p {
 
 .subscribe {
     padding-top: 50px;
-    text-align:center;
 }
 
 .subscribe input {
@@ -809,8 +808,10 @@ p {
     border-left: 5px solid #19BD9B;
 }
 
-.subscribe button {
+.subscribe input[type=submit] {
     color: #fff;
+    float: right;
+    padding:10px;
     height: 40px;
     font-size:18px;
     background-color: #19BD9B;
@@ -818,6 +819,7 @@ p {
     border-bottom-right-radius: 5px;
     border:0;
     margin-left: -5px;
+    margin-top: -55px;
     webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -825,7 +827,7 @@ p {
     outline: none;
 }
 
-.subscribe button:hover, button:focus{
+.subscribe input[type=submit]:hover{
     color: #fff;
     background-color: #10816A;
 }
@@ -911,4 +913,23 @@ p {
     padding: 50px;
     margin: auto;
     text-align: center;
+}
+
+.flashes {
+    margin-top: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -60px;
+    text-align: center;
+}
+
+.flashes li {
+    padding:15px;
+    border-radius: 5px;
+    margin-top:10px;
+}
+
+.flash-close {
+    font-size: 18px;
+    float: right;
 }

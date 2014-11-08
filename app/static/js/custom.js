@@ -2,6 +2,11 @@ $(document).ready(function(){
     get_contests(1);
 });
 
+//close flash messages
+$('.flash-close').click(function() {
+  $(this).parent().fadeOut("slow");
+});
+
 function flip_init() {
     // set up hover panels
     // although this can be done without JavaScript, we've attached these events
