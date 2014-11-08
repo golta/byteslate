@@ -47,9 +47,12 @@ class Contest(Base):
 
 	title = db.Column(db.String(30), nullable=False)
 	description = db.Column(db.String(160), nullable=False)
+	content = db.Column(db.Text(), nullable=False)
 	start_time = db.Column(db.DateTime(), nullable=False)
 	end_time = db.Column(db.DateTime(), nullable=False)
 	url = db.Column(db.String(200), nullable=False)
+	isprized = db.Column(db.Boolean(), nullable=False)
+	ishiring = db.Column(db.Boolean(), nullable=False)
 	arena_id = db.Column(db.Integer, db.ForeignKey('arena.id'), nullable=False)
 	arena = db.relationship('Arena', backref=db.backref('contests', lazy='dynamic'))
 
@@ -67,8 +70,10 @@ class Contest(Base):
 			'end_time': str(self.end_time),
 			'url' : self.url,
 			'arena': self.arena.title,
-			'added_on': self.added_on,
-			'id': self.id
+			'added_on': str(self.added_on),
+			'id': self.id,
+			'isprized': self.isprized,
+			'ishiring': self.ishiring
 		}
 		return bson.dumps(json_data)
 
