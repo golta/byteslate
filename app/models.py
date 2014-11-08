@@ -71,7 +71,9 @@ class Contest(Base):
 			'url' : self.url,
 			'arena': self.arena.title,
 			'added_on': str(self.added_on),
-			'id': self.id
+			'id': self.id,
+			'isprized': self.isprized,
+			'ishiring': self.ishiring
 		}
 		return bson.dumps(json_data)
 

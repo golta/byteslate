@@ -790,7 +790,6 @@ p {
 
 .subscribe input {
     color: #10816A;
-    height: 40px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border: 1px solid rgba(0,0,0,.15);
@@ -802,13 +801,19 @@ p {
     transition: all 0.3s ease-in-out;
     outline: none;
 }
-
+.subscribe input[type=text] {
+    width: 70%;
+    height: 40px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 .subscribe input[type=text]:focus, input[type=text]:active {
 
     border-left: 5px solid #19BD9B;
 }
 
 .subscribe input[type=submit] {
+    width: 30%;
     color: #fff;
     float: right;
     padding:10px;
@@ -817,6 +822,8 @@ p {
     background-color: #19BD9B;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     border:0;
     margin-left: -5px;
     margin-top: -55px;

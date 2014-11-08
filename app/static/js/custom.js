@@ -1,5 +1,6 @@
 $(document).ready(function(){
     get_contests(1);
+    $('#email').removeClass('form-control');
 });
 
 //close flash messages
@@ -105,11 +106,17 @@ function get_contests(page) {
                           '<div class="large weight-600">26 Oct</div>'+
                           '<div class="large weight-600">2014</div>'+
                       '</div>'+
-                    '</div>'+
-                    '<div class="prized">'+
-                        '<i class="fa fa-trophy"></i> Prizes'+
-                    '</div>'+
-                    '<div class="ct-more">'+
+                    '</div>';
+                    if (contest.isprized || contest.ishiring) {
+                        ct += '<div class="prized">';
+                        if (contest.isprized)
+                          ct += '<i class="fa fa-trophy"></i> Prizes';
+                        if (contest.ishiring)
+                          ct += '&nbsp; <i class="fa fa-money"></i> Hiring';
+
+                        ct +='</div>';
+                    }
+                    ct +='<div class="ct-more">'+
                       '<i class="fa fa-ellipsis-h"></i>'+
                     '</div>'+
                   '</div>'+
