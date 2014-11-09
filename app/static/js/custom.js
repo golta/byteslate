@@ -67,6 +67,15 @@ function shuffle_init() {
         $('#contest-grid').shuffle('sort', opts);
     });
 
+    $('.filter-platform').click(function(){
+        var platform = $(this).attr("data-platform");
+
+        if(platform == "all") {
+            $('#contest-grid').shuffle('shuffle');
+        } else {
+            $('#contest-grid').shuffle('shuffle', platform);
+        }
+    });
 
 }
 
