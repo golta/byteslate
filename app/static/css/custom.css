@@ -738,51 +738,28 @@ p {
 
 .filter-sort {
     margin-bottom: 15px;
+    text-align: center;
 }
 
-.filters {
-    margin-bottom: 10px;
+.label {
+    height: 10px;
+    width: 10px;
+    padding: 2px 7px;
+    margin: 0px 10px;
+    cursor: pointer;
 }
 
-.filter-select:first-child {
-    margin-left: -10px;
+.label-text {
+    font-size: 16px;
+    text-decoration: italic;
+    cursor: pointer;
 }
 
-.filters select  {
-    padding: 5px;
-    margin-left:15px;
-    color: #303030;
-    background: #f8f8f8;
-    border-radius: 5px;
+.sep {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
 }
-
-.filters label {
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.sort {
-
-    float:right;
-}
-
-#filters.affix {
-    position: fixed;
-    top: 77px;
-    width: 100%
-}
-
-#filters > .navbar-inner {
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0;
-}
-
-#filters { position: relative; z-index: 2; }
-
 
 .subscribe {
     padding-top: 50px;
@@ -813,6 +790,9 @@ p {
 }
 
 .subscribe input[type=submit] {
+    position:absolute;
+    top: 50px;
+    right: 5px;
     width: 30%;
     color: #fff;
     float: right;
@@ -826,7 +806,6 @@ p {
     border-bottom-left-radius: 0px;
     border:0;
     margin-left: -5px;
-    margin-top: -55px;
     webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
