@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} New contest {% endblock %}
+
+{% block body %}
+	<h1> hello </h1>
+	<div class="page-header">
+		<h3>All contest</h3>
+	</div>
+	<div class="col-md-4">
+	<h2> <a href='{{ url_for('contest.add_contest') }}'> Add contest  </a> </h2>
+		{% for contest in contests %}
+			<div id='contestdiv'>
+				<h3> {{ contest.title }} </h3> 
+				<a href='{{ url_for('contest.edit_contest', id=contest.id)}}'> Edit </a> <br/>
+				<form action="/contest/delete/{{ contest.id }}" method='post'>
+					<input type='submit' name='submit' value='Delete' />
+				</form>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
