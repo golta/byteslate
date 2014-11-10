@@ -4,6 +4,7 @@ a:hover {
 
 body {
     font-family: 'Open Sans', sans-serif;
+    overflow-x:hidden;
 }
 
 p {
@@ -110,6 +111,7 @@ p {
 
 .content-holder {
     margin-right: 0px;
+    min-height: 290px;
 }
 
 .contest-container {
@@ -405,10 +407,19 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-.cal:hover {
+.cal:hover{
     color:#fff;
     background-color: #5A872A;
     cursor:hand;
+}
+.cal a {
+     -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.cal:hover a{
+    color:#fff;
 }
 
 
