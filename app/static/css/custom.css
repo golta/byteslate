@@ -950,3 +950,12 @@ p {
     font-size: 18px;
     float: right;
 }
+
+.login {
+    margin-top:60px;
+}
+
+.add-contest-holder {
+    margin-top:80px;
+    padding: 15px;
+}

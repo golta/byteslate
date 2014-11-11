@@ -1,7 +1,14 @@
 $(document).ready(function(){
     get_contests(1);
+
+    /*Tweaks*/
     $('#email').removeClass('form-control');
     $('#email').attr('placeholder', '  Give us your Email');
+
+    // var iframe = document.getElementById('twitter-widget-0');
+    // var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // $(innerDoc).find('.timeline').removeClass('customisable-border');
 });
 
 //close flash messages
@@ -128,7 +135,7 @@ function get_contests(page) {
                   '<div class="opts row">'+
                       '<div class="f_icons col-lg-9 col-md-9 col-sm-9 col-xs-9 col-xs-9">'+
                         '<ul>'+
-                            '<li><a class="icon1" href="https://www.facebook.com/sharer/sharer.php?u=iiita.ac.in" target="_blank"></a></li>'+
+                            '<li><a class="icon1" href="https://www.facebook.com/sharer/sharer.php?u=localhost:5000/contest/' + contest.title + '/' + contest.id +'" target="_blank"></a></li>'+
                             '<li><a class="icon2" href="#"></a></li>'+
                             '<li><a class="icon3" href="#"></a></li>'+
                         '</ul>'+

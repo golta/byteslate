@@ -5,7 +5,9 @@
 {% block title %} New contest {% endblock %}
 
 {% block body %}
-	<h1> hello </h1>
+     {% if current_user.is_authenticated() %}
+            <a href="{{ url_for('auth.logout') }}">Sign Out</a>
+    {% endif %}
 	<div class="page-header">
 		<h3>Add contest</h3>
 	</div>
