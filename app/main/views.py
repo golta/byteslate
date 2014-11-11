@@ -24,8 +24,8 @@ def index():
 		db.session.add(subscriber)
 		db.session.commit()
 		# send confirmation mail
-		#mail_send('Confirm account', subscriber.email, 'welcome')
-		flash('Subscription received. A confirmation mail has been sent')
+		mail_send(str(subscriber.email), 'confirmation_instructions', data=None)
+		flash('Your email got pushed in email list and a confirmation mail has been sent')
 		return redirect(url_for('main.index'))
 	contests = Contest.query.all()
 	return render_template('index.html', form=form, contests=contests)
