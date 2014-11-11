@@ -80,7 +80,8 @@ def view_contest_by_page(page):
 @login_required
 def delete_contest(id):
 	contest = Contest.query.get_or_404(id)
-	db.session.delete(contest)
-	db.session.commit()
-	flash('Delete Successful')
+	if session['isadmin']:
+		db.session.delete(contest)
+		db.session.commit()
+		flash('Delete Successful')
 	return redirect(url_for('contest.view_contest'))
