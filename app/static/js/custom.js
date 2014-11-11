@@ -1,6 +1,7 @@
 $(document).ready(function(){
     get_contests(1);
     $('#email').removeClass('form-control');
+    $('#email').attr('placeholder', '  Give us your Email');
 });
 
 //close flash messages
@@ -138,7 +139,8 @@ function get_contests(page) {
                         '</ul>'+
                     '</div>'+
                     '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
-                        '<i class="fa fa-calendar"></i>'+
+                        '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
+                          'target="_blank" rel="nofollow"><i class="fa fa-calendar"></i></a>'+
                     '</div>'+
                 '</div>'+
                 '</div>'+
@@ -165,9 +167,10 @@ function get_contests(page) {
                             '<li><a class="icon2" href="#"></a></li>'+
                             '<li><a class="icon3" href="#"></a></li>'+
                         '</ul>'+
-                    '</div>'+
+                    '</div>'+//@TODO Add dates to calendar link in the format dates=20140127T224000Z/20140320T221500Z
                     '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
-                        '<i class="fa fa-calendar"></i>'+
+                        '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
+                          'target="_blank" rel="nofollow"><i class="fa fa-calendar"></i></a>'+
                     '</div>'+
                   '</div>'+
                 '</div>'+
