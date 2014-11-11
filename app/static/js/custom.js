@@ -94,7 +94,7 @@ function get_contests(page) {
                 '<div class="box1">'+
                   '<div class="ct-content">'+
                     '<div class="ct-title">'+
-                      '<a href="">'+contest.title+'</a>'+
+                      '<a href="'+contest.url+'" target="new">'+contest.title+'</a>'+
                     '</div>'+
                     '<div class="ct-pub-on">'+
                       '<p>Posted on: ' + contest.added_on + '</p>'+
