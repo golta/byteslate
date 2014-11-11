@@ -25,7 +25,6 @@ def send_event_notification(*recepients):
 		sender='admin@bytecode.com',
 		#recipients=[user]
 	)
-
 	msg.body = render_template(
 		'mail/notification.mail'
 		#user=user,
@@ -33,6 +32,7 @@ def send_event_notification(*recepients):
 	)
 	mail.send(msg)
 	logger.info("Task finished: result")
+
 
 @periodic_task(run_every=(crontab(hour="*", minute="*")))
 def send_mail():

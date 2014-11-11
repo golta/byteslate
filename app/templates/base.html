@@ -25,14 +25,6 @@
     {% block site_header %}
     {% endblock %}
 
-	<ul class=" navbar-nav navbar-right">
-		{% if current_user.is_authenticated() %}
-			<li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
-		{% else %}
-			<li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
-		{% endif %}
-	</ul>
-
     {% set active_page = 'contact' %}
 
     {% with messages = get_flashed_messages() %}

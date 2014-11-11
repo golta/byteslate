@@ -4,12 +4,26 @@
 
 {% block title %} New contest {% endblock %}
 
+{% block site_header %}
+    {% set active_page = "" %}
+    {% include 'includes/site_header.html' %}
+{% endblock %}
 {% block body %}
-	<h1> hello </h1>
-	<div class="page-header">
-		<h3>Add contest</h3>
-	</div>
-	<div class="col-md-4">
-		{{ wtf.quick_form(form) }}
-	</div>
+<div class=" add-contest-holder row">
+
+    <div class="col-lg-4 col-md-4 col-sm-3">
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="page-header" >
+            {% if current_user.is_authenticated() %}
+            <a href="{{ url_for('auth.logout') }}" style="float:right">Sign Out</a>
+             {% endif %}
+        	<h3>Edit contest</h3>
+        </div>
+
+        <div class="">
+        	{{ wtf.quick_form(form) }}
+        </div>
+    </div>
+</div>
 {% endblock %}
