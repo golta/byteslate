@@ -4,11 +4,26 @@
 
       </div>
       <div class="col-lg-10 filter-sort">
-          <span class="filter-platform" data-platform="all"><span class="label"> &nbsp;</span><span class="label-text"> All</span></span><span class="sep">/</span>
-          <span class="filter-platform" data-platform="codechef"><span class="label bg-codechef"> &nbsp;</span><span class="label-text"> Codechef</span></span><span class="sep">/</span>
-          <span class="filter-platform" data-platform="topcoder"><span class="label bg-topcoder"> &nbsp;</span><span class="label-text">Topcoder</span></span><span class="sep">/</span>
-          <span class="filter-platform" data-platform="codeforces"><span class="label bg-codeforces"> &nbsp;</span><span class="label-text">Codeforces</span></span><span class="sep">/</span>
-          <span class="filter-platform" data-platform="hackerearth"><span class="label bg-hackerearth"> &nbsp;</span><span class="label-text">Hackerearth</span></span>
+          <div class="filters">
+            <label class="hidden-xs ">Platform</label>
+            <select class="filter-select" id="platform">
+              <option class="visible-xs">--Choose Platform--</option>
+              <option selected>All</option>
+              <option>Codechef</option>
+              <option>Topcoder</option>
+              <option>Codeforces</option>
+              <option>Hackerearth</option>
+            </select>
+
+
+            <label class="hidden-xs"> Others</label>
+            <select id="others" class="filter-select">
+              <option class="visible-xs">--Type of Contest--</option>
+              <option value="any" selected>Any</option>
+              <option value="prized">Prized</option>
+              <option value="hiring">Hiring</option>
+            </select>
+        </div>
       </div>
   </div>
 </div>

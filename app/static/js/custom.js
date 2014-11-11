@@ -1,7 +1,14 @@
 $(document).ready(function(){
     get_contests(1);
+
+    /*Tweaks*/
     $('#email').removeClass('form-control');
     $('#email').attr('placeholder', '  Give us your Email');
+
+    // var iframe = document.getElementById('twitter-widget-0');
+    // var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // $(innerDoc).find('.timeline').removeClass('customisable-border');
 });
 
 //close flash messages
@@ -48,24 +55,19 @@ function shuffle_init() {
         }
     });
 
-    $("#start-date").change(function() {
-        var date = $(this).find("option:selected").val().toLowerCase();
-        console.log(date);
-        if(date == "any") {
-            $('#contest-grid').shuffle('shuffle');
-        } else {
-            $('#contest-grid').shuffle('shuffle', date);
+    $("#others").change(function() {
+        var platform = $("#platform").find("option:selected").val().toLowerCase();
+        var other = $(this).find("option:selected").val().toLowerCase();
+        console.log(other);
+        console.log(platform);
+        if (platform == "all" && other == "any") {
+          $('#contest-grid').shuffle('shuffle');
+        } else if (platform == "all" && other != "any") {
+          $('#contest-grid').shuffle('shuffle', other);
+        } else if (platform != "all" && other != "any") {
+          console.log(platform + ", " + other);
+          $('#contest-grid').shuffle('shuffle', other);
         }
-    });
-    $("#sort-date").click( function() {
-        alert('clicker');
-        var opts = {
-          reverse: true,
-          by: function($el) {
-            return $el.data('data-date');
-          }
-        };
-        $('#contest-grid').shuffle('sort', opts);
     });
 
     $('.filter-platform').click(function(){
@@ -86,13 +88,13 @@ function get_contests(page) {
         url:"api/contest/"+page,
         success:function(result){
             result.contests.forEach( function(contest) {
-             var ct = '<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 contest-main" data-date="2014-10-20-1530" data-groups=\'["'+contest.arena.toLowerCase()+'", "1-week"]\'>'+
+             var ct = '<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 contest-main" data-date="2014-10-20-1530" data-groups=\'["'+contest.arena.toLowerCase()+'"'; if(contest.isprized) ct += ',"prized"'; if(contest.ishiring) ct += ',"hiring"';  ct += ' ]\'>'+
             '<div class="hover fl-panel">'+
               '<div class="front  bg-'+contest.arena+'">'+
                 '<div class="box1">'+
                   '<div class="ct-content">'+
                     '<div class="ct-title">'+
-                      '<a href="">'+contest.title+'</a>'+
+                      '<a href="'+contest.url+'" target="new">'+contest.title+'</a>'+
                     '</div>'+
                     '<div class="ct-pub-on">'+
                       '<p>Posted on: ' + contest.added_on + '</p>'+
@@ -133,7 +135,7 @@ function get_contests(page) {
                   '<div class="opts row">'+
                       '<div class="f_icons col-lg-9 col-md-9 col-sm-9 col-xs-9 col-xs-9">'+
                         '<ul>'+
-                            '<li><a class="icon1" href="https://www.facebook.com/sharer/sharer.php?u=iiita.ac.in" target="_blank"></a></li>'+
+                            '<li><a class="icon1" href="https://www.facebook.com/sharer/sharer.php?u=localhost:5000/contest/' + contest.title + '/' + contest.id +'" target="_blank"></a></li>'+
                             '<li><a class="icon2" href="#"></a></li>'+
                             '<li><a class="icon3" href="#"></a></li>'+
                         '</ul>'+
