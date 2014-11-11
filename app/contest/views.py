@@ -1,7 +1,7 @@
 from flask import render_template, session, redirect, url_for, request, flash
 from . import contest
 from ..models import Contest, Arena
-from .forms import ContestAddForm
+from .forms import ContestAddForm, ArenaAddForm
 from flask.ext.login import login_required
 from app import db
 from datetime import datetime
@@ -49,6 +49,7 @@ def edit_contest(id):
 		contest.ishiring = form.hiring.data
 
 		db.session.add(contest)
+		db.session.commit()
 		flash('Contest updated')
 		return redirect(url_for('contest.edit_contest', id=contest.id) )
 	form.title.data = contest.title
@@ -85,3 +86,25 @@ def delete_contest(id):
 		db.session.commit()
 		flash('Delete Successful')
 	return redirect(url_for('contest.view_contest'))
+
+@contest.route('/arena/', methods=['GET', 'POST'])
+@login_required
+def add_arena():
+	arenas = Arena.query.all()
+	form = ArenaAddForm()
+	if form.validate_on_submit():
+		arena = Arena(title=form.title.data)
+		db.session.add(arena)
+		db.session.commit()
+		flash('Added a new arena')
+	return render_template('contest/arena.html', form=form, arenas=arenas)
+
+@contest.route('/arena/delete/<id>', methods=['POST'])
+@login_required
+def delete_arena(id):
+	arena = Arena.query.get_or_404(id)
+	if session['isadmin']:
+		db.session.delete(arena)
+		db.session.commit()
+		flash('Delete Successful')
+	return redirect(url_for('contest.add_arena'))
