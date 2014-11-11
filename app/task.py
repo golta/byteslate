@@ -46,7 +46,7 @@ def send_mail():
 
 		# send mail contest going to happen in next 24 hours
 		if (diff_hour > 23 and diff_hour <= 24):
-			subscriber_list = Subscriber.query.execute().all()
+			subscriber_list = Subscriber.query.filter_by(isactive = 1).all()
 
 			for subscriber in subscriber_list:
 				mail_send(subscriber.email, 'Contest Notification', 'welcome')
