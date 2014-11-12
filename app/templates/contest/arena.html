@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} New contest {% endblock %}
+
+{% block site_header %}
+    {% set active_page = "" %}
+    {% include 'includes/site_header.html' %}
+{% endblock %}
+
+{% block body %}
+<div class=" add-contest-holder row">
+
+    <div class="col-lg-4 col-md-4 col-sm-3">
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+
+    	<div class="page-header">
+            {% if current_user.is_authenticated() %}
+                <a href="{{ url_for('auth.logout') }}" style="float:right">Sign Out</a>
+        {% endif %}
+    		<h3>Add a new Arena</h3>
+    	</div>
+    	<div class="">
+    		{{ wtf.quick_form(form) }}
+    	</div>
+    </div>
+</div>
+<div>
+    {% for arena in arenas %}
+        <div id='contestdiv'>
+            <p> {{ arena.title }} </p>
+            <form action="/contest/arena/delete/{{ arena.id }}" method='post'>
+                <input type='submit' name='submit' value='Delete' />
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

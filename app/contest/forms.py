@@ -13,3 +13,7 @@ class ContestAddForm(Form):
 	prizes = RadioField('Prizes', choices=[ ('1', 'Yes'), ('0', 'No') ])
 	hiring = RadioField('Hiring Event', choices=[ ('1', 'Yes'), ('0', 'No') ])
 	submit = SubmitField('Save')
+
+class ArenaAddForm(Form):
+	title = StringField('Title', validators=[Required(), Length(1,29)] )
+	submit = SubmitField('Save')

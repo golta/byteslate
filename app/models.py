@@ -97,3 +97,10 @@ class Arena(Base):
 
 	def __init__(self, title):
 		self.title = title
+
+	def to_json(self):
+		json_data = {
+			'id': self.id,
+			'title' : self.title
+		}
+		return bson.dumps(json_data)
