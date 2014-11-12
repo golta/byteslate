@@ -10,13 +10,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container login" >
-    	<h3>Login</h3>
+<div class=" add-contest-holder row">
 
-    	<div class="col-lg-4 col-md-4 col-sm-6 ">
-    		{{ wtf.quick_form(form) }}
-    	</div>
+    <div class="col-lg-4 col-md-4 col-sm-3">
     </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="container login" >
+        	<h3>Login</h3>
+
+        	<div class="col-lg-4 col-md-4 col-sm-6 ">
+        		{{ wtf.quick_form(form) }}
+        	</div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block site_footer %}

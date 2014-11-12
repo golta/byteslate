@@ -20,7 +20,7 @@
             {% if current_user.is_authenticated() %}
                 <a href="{{ url_for('auth.logout') }}" style="float:right">Sign Out</a>
         {% endif %}
-    		<h3>Add contest</h3>
+    		<h3><i class="fa fa-arrow-left" style="cursor: pointer" onclick="history.go(-1);"></i> &nbsp; Add contest</h3>
     	</div>
     	<div class="">
     		{{ wtf.quick_form(form) }}
