@@ -20,10 +20,16 @@ function flip_init() {
     // set up hover panels
     // although this can be done without JavaScript, we've attached these events
     // because it causes the hover to be triggered when the element is tapped on a touch device
-    $('.ct-more').click(function(){
+    $('.box1').click (function() {
         $(this).closest('.hover').css({'box-shadow':''});
         $(this).closest('.hover').addClass('flip');
     });
+
+
+    // $('.ct-more').click(function(){
+    //     $(this).closest('.hover').css({'box-shadow':''});
+    //     $(this).closest('.hover').addClass('flip');
+    // });
     $('.ct-back').click(function(){
         $(this).closest('.hover').css({'box-shadow':''});
         $(this).closest('.hover').removeClass('flip');
@@ -128,9 +134,9 @@ function get_contests(page) {
 
                         ct +='</div>';
                     }
-                    ct +='<div class="ct-more">'+
+                    ct +='<a href="/contest/' + contest.title + '/' + contest.id + '"><div class="ct-more">'+
                       '<i class="fa fa-ellipsis-h"></i>'+
-                    '</div>'+
+                    '</div></a>'+
                   '</div>'+
                   '<div class="opts row">'+
                       '<div class="f_icons col-lg-9 col-md-9 col-sm-9 col-xs-9 col-xs-9">'+
