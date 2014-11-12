@@ -12,7 +12,7 @@ def login():
 		if admin is not None:
 			login_user(admin)
 			session['isadmin'] = True
-			return redirect(url_for('main.index') )
+			return redirect(url_for('contest.view_contest') )
 		flash('Invalid username or password')
 	return render_template('auth/login.html', form=form)
 

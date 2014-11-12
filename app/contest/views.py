@@ -27,7 +27,7 @@ def add_contest():
 		db.session.add(contest)
 		db.session.commit()
 		flash('New contest Added')
-		return redirect(url_for('main.index'))
+		return redirect(url_for('contest.view_contest'))
 	return render_template('contest/new.html', form=form)
 
 @contest.route('/edit/<id>', methods=['GET', 'POST'] )
@@ -36,7 +36,7 @@ def edit_contest(id):
 	contest = Contest.query.get_or_404(id)
 	form = ContestAddForm()
 	form.arena.choices = [(g.id, g.title) for g in Arena.query.order_by('title') ]
-	
+
 	if form.validate_on_submit():
 		contest.title = form.title.data
 		contest.description = form.description.data
