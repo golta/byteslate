@@ -86,6 +86,22 @@ function shuffle_init() {
         }
     });
 
+    // Advanced filtering
+  $('.contest-search').on('keyup change', function() {
+    var val = this.value.toLowerCase();
+    $grid.shuffle('shuffle', function($el, shuffle) {
+
+      // Only search elements in the current group
+      if (shuffle.group !== 'all' && $.inArray(shuffle.group, $el.data('groups')) === -1) {
+        return false;
+      }
+      
+      var platform = $.trim($el.attr("data-groups")).toLowerCase();
+      var text = $.trim( $el.find('.ct-title').text() ).toLowerCase();
+      var text2 = $.trim( $el.find('.ct-about-text p').text() ).toLowerCase();
+      return (text.indexOf(val) !== -1  || text2.indexOf(val) !== -1 || platform.indexOf(val) !== -1);
+    });
+  });
 }
 
 
@@ -146,10 +162,10 @@ function get_contests(page) {
                             '<li><a class="icon3" href="#"></a></li>'+
                         '</ul>'+
                     '</div>'+
-                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
-                        '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
-                          'target="_blank" rel="nofollow"><i class="fa fa-calendar"></i></a>'+
-                    '</div>'+
+                    '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
+                          'target="_blank" rel="nofollow"><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
+                        '<i class="fa fa-calendar"></i>'+
+                    '</div></a>'+
                 '</div>'+
                 '</div>'+
               '</div>'+
@@ -176,10 +192,10 @@ function get_contests(page) {
                             '<li><a class="icon3" href="#"></a></li>'+
                         '</ul>'+
                     '</div>'+//@TODO Add dates to calendar link in the format dates=20140127T224000Z/20140320T221500Z
-                    '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
-                        '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
-                          'target="_blank" rel="nofollow"><i class="fa fa-calendar"></i></a>'+
-                    '</div>'+
+                    '<a href="https://www.google.com/calendar/render?action=TEMPLATE&text='+contest.title +'&details='+encodeURI(contest.description)+'  ' + contest.url+'&location='+contest.arena +' - '+ contest.url+'&sf=true&output=xml"'+
+                          'target="_blank" rel="nofollow"><div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 cal">'+
+                        '<i class="fa fa-calendar"></i>'+
+                    '</div></a>'+
                   '</div>'+
                 '</div>'+
               '</div>'+
