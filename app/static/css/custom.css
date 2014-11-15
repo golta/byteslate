@@ -959,3 +959,40 @@ p {
     margin-top:80px;
     padding: 15px;
 }
+
+.inner-addon {
+    position: relative; 
+    margin: 0 auto;
+}
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  color: #777;
+}
+
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 15px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.inner-addon input {
+    border-radius: 15px;
+    padding: 5px 20px;
+    background-color: #E9ECEC;
+     -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.inner-addon input[type=text]:active, input:focus{
+    border-left: 0px; 
+    background-color: #fff;
+    color: #777;
+}
